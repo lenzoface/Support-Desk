@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {useNavigate} from 'react-router-dom'
 import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { register, reset } from "../features/auth/authSlice";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -12,6 +15,29 @@ function Register() {
 
   const { name, email, password, password2 } = formData;
 
+  // Dispatching actions to Redux store
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+  // Bring properties from state coming out of authSlice using useSelector()
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    // Redirect when logged in
+    if (isSuccess || user) {
+        navigate('/')
+    }
+
+    // Activating reset in authSlice.js
+    dispatch(reset)
+  }, [isError, isSuccess, user, message, navigate, dispatch]);
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -20,12 +46,21 @@ function Register() {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if(password !== password2){
-        toast.error('Passwords do not match!')
+    if (password !== password2) {
+      toast.error("Passwords do not match!");
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+      };
+
+      // Dispatching 'register' from authSlice, so the 'userData' will be used for 'user' in async function, so our form hooks to async thunk in authSlice
+      dispatch(register(userData));
     }
-  }
+  };
 
   return (
     <>
