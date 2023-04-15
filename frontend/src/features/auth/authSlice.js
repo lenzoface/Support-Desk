@@ -47,6 +47,11 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   }
 });
 
+// Logout user
+export const logout = createAsyncThunk("auth/logout", async () => {
+    await authService.logout()
+})
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -75,7 +80,10 @@ export const authSlice = createSlice({
         state.user = null;
         // payload comes from thunkAPI
         state.message = action.payload; //* this is coming from the trycatch error message from backend see return thunkAPI.rejectWithValue(message) in const register
-      });
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null
+      })
   },
 });
 
