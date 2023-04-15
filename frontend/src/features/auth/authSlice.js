@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 
 // Get user from localstorage, so it won't log off user when reloading a page
-const user = JSON.parse(localStorage.getItem('user'))
+const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
   user: user ? user : null,
@@ -19,7 +19,7 @@ export const register = createAsyncThunk(
     try {
       return await authService.register(user);
     } catch (error) {
-        // Get message from backend
+      // Get message from backend
       const message =
         (error.response &&
           error.response.data &&
@@ -27,7 +27,7 @@ export const register = createAsyncThunk(
         error.message ||
         error.toString();
 
-        // Put message in frontend payload
+      // Put message in frontend payload
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -49,8 +49,8 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 
 // Logout user
 export const logout = createAsyncThunk("auth/logout", async () => {
-    await authService.logout()
-})
+  await authService.logout();
+});
 
 export const authSlice = createSlice({
   name: "auth",
@@ -81,9 +81,25 @@ export const authSlice = createSlice({
         // payload comes from thunkAPI
         state.message = action.payload; //* this is coming from the trycatch error message from backend see return thunkAPI.rejectWithValue(message) in const register
       })
-      .addCase(logout.fulfilled, (state) => {
-        state.user = null
+      
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
       })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload; //*this is coming from the try in login
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.user = null;
+        // payload comes from thunkAPI
+        state.message = action.payload; //* this is coming from the trycatch error message from backend see return thunkAPI.rejectWithValue(message) in const login
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+      });
   },
 });
 
