@@ -8,6 +8,6 @@ const {
 const { protect } = require("../middleware/authMiddleware");
 
 // We can chain on route methods instead of writing them one by one
-router.route("/").get(protect, getTickets).post(protect, createTickets);
+router.route("/").get(protect, getTickets).post(protect, createTicket);
 
 module.exports = router;
