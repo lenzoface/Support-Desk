@@ -1,50 +1,67 @@
 import axios from "axios";
-const API_URL = '/api/tickets/'
+const API_URL = "/api/tickets/";
 
-// Create new ticket 
+// Create new ticket
 const createTicket = async (ticketData, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-    const response = await axios.post(API_URL, ticketData, config)
+  const response = await axios.post(API_URL, ticketData, config);
 
-    return response.data
-}
+  return response.data;
+};
 
-// Get user tickets 
+// Get user tickets
 const getTickets = async (token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-    const response = await axios.get(API_URL, config)
+  const response = await axios.get(API_URL, config);
 
-    return response.data
-}
+  return response.data;
+};
 
-// Get single tickets 
+// Get single tickets
 const getTicket = async (ticketId, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-    const response = await axios.get(API_URL + ticketId, config)
+  const response = await axios.get(API_URL + ticketId, config);
 
-    return response.data
-}
+  return response.data;
+};
 
+// Close a ticket
+const closeTicket = async (ticketId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(
+    API_URL + ticketId,
+    { status: "closed" },
+    config
+  );
+
+  return response.data;
+};
 
 const ticketService = {
-    createTicket,
-    getTickets,
-    getTicket,
-}
+  createTicket,
+  getTickets,
+  getTicket,
+  closeTicket
+};
 
-export default ticketService
+export default ticketService;
