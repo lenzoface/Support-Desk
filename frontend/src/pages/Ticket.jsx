@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
 import { getTicket, closeTicket } from "../features/tickets/ticketSlice";
-import { getNotes, reset as notesReset } from "../features/notes/noteSlice";
+import { getNotes, createNote, reset as notesReset } from "../features/notes/noteSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import { toast } from "react-toastify";
@@ -62,7 +62,7 @@ function Ticket() {
   // Create note submit for modal
   const onNoteSubmit = (e) => {
     e.preventDefault()
-    // create Note
+    dispatch(createNote({noteText, ticketId}))
     closeModal()
   }
 
