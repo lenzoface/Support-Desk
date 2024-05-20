@@ -9,17 +9,17 @@ const ticketSchema = mongoose.Schema({
     product: {
         type: String,
         required: [true, 'Пожалуйста выберите продукт'],
-        enum: ['iPhone', 'Macbook Pro', 'iMac', 'iPad', 'Телефон на Android', 'Домашний интернет', 'Роутер', 'Другое']
+        enum: ['iPhone', 'Телефон на Android', 'Домашний интернет', 'Macbook Pro', 'Роутер', 'iMac', 'iPad',  'Другое']
     },
     description: {
         type: String,
-        required: [true, 'Пожалуйста введи описание проблемы']
+        required: [true, 'Пожалуйста введите описание проблемы']
     },
     status: {
         type: String,
         required: true,
-        enum: ['новый', 'открыт', 'закрыт'],
-        default: 'новый'
+        enum: ['new', 'open', 'closed'],
+        default: 'new'
     }
 },
 // Will have info about actions (time, date)
