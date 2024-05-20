@@ -12,7 +12,7 @@ const getTickets = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401)
-    throw new Error('User not found')
+    throw new Error('Пользователь не найден')
   }
 
   const tickets = await Ticket.find({user: req.user.id})
@@ -29,19 +29,19 @@ const getTicket = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401)
-    throw new Error('User not found')
+    throw new Error('Пользователь не найден')
   }
 
   const ticket = await Ticket.findById(req.params.id)
   
   if (!ticket) {
     res.status(404)
-    throw new Error('Ticket not found')
+    throw new Error('Заявка не найдена')
   }
 
   if (ticket.user.toString() !== req.user.id) {
     res.status(401)
-    throw new Error('Not Authorized')
+    throw new Error('Нет доступа')
   }
 
   res.status(200).json(ticket);
@@ -55,7 +55,7 @@ const createTicket = asyncHandler(async (req, res) => {
 
   if (!product || !description) {
     res.status(400)
-    throw new Error('Please add a product and description')
+    throw new Error('Пожалуйста добавьте описание и продукт')
   }
 
   // Get user using the id in the JWT
@@ -63,7 +63,7 @@ const createTicket = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401)
-    throw new Error('User not found')
+    throw new Error('Пользователь не найден')
   }
 
   const ticket = await Ticket.create({
@@ -85,19 +85,19 @@ const deleteTicket = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401)
-    throw new Error('User not found')
+    throw new Error('Пользователь не найден')
   }
 
   const ticket = await Ticket.findById(req.params.id)
   
   if (!ticket) {
     res.status(404)
-    throw new Error('Ticket not found')
+    throw new Error('Заявка не найдена')
   }
 
   if (ticket.user.toString() !== req.user.id) {
     res.status(401)
-    throw new Error('Not Authorized')
+    throw new Error('Нет доступа')
   }
 
   // await ticket.remove()  | deprecated
@@ -115,19 +115,19 @@ const updateTicket = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401)
-    throw new Error('User not found')
+    throw new Error('Пользователь не найден')
   }
 
   const ticket = await Ticket.findById(req.params.id)
   
   if (!ticket) {
     res.status(404)
-    throw new Error('Ticket not found')
+    throw new Error('Заявка не найдена')
   }
 
   if (ticket.user.toString() !== req.user.id) {
     res.status(401)
-    throw new Error('Not Authorized')
+    throw new Error('Нет доступа')
   }
 
   const updatedTicket = await Ticket.findByIdAndUpdate(req.params.id, req.body, {new:true})

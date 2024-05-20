@@ -63,9 +63,9 @@ function Login() {
     <>
       <section className="heading">
         <h1>
-          <FaSignInAlt /> Login
+          <FaSignInAlt /> Логин
         </h1>
-        <p>Please log in to get support</p>
+        <p>Пожалуйста войдите в систему для получения помощи</p>
       </section>
 
       <section className="form">
@@ -78,7 +78,7 @@ function Login() {
               name="email"
               value={email}
               onChange={onChange}
-              placeholder="Enter your email"
+              placeholder="Введите ваш email"
               required
             />
           </div>
@@ -90,12 +90,12 @@ function Login() {
               name="password"
               value={password}
               onChange={onChange}
-              placeholder="Enter a password"
+              placeholder="Введите ваш пароль"
               required
             />
           </div>
           <div className="form-group">
-            <button className="btn btn-block">Log In</button>
+            <button className="btn btn-block">Войти</button>
           </div>
         </form>
       </section>

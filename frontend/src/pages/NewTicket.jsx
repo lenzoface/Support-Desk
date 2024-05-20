@@ -44,22 +44,22 @@ function NewTicket() {
     <>
     <BackButton url='/' />
       <section className="heading">
-        <h1>Create New Ticket</h1>
-        <p>Please fill out the form below</p>
+        <h1>Создать новую заявку</h1>
+        <p>Пожалуйста заполните форму заявки</p>
       </section>
 
       <section className="form">
         <div className="form-group">
-          <label htmlFor="name">Customer Name</label>
+          <label htmlFor="name">Имя клиента</label>
           <input type="text" className="form-control" value={name} disabled />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Customer Email</label>
+          <label htmlFor="email">Email клиента</label>
           <input type="text" className="form-control" value={email} disabled />
         </div>
         <form onSubmit={onSubmit}>
           <div className="form-group">
-            <label htmlFor="product">Product</label>
+            <label htmlFor="product">Продукт</label>
             <select
               name="product"
               id="product"
@@ -67,24 +67,28 @@ function NewTicket() {
               onChange={(e) => setProduct(e.target.value)}
             >
               <option value="iPhone">iPhone</option>
+              <option value="Телефон на Android">Телефон на Android</option>
+              <option value="Домашний интернет">Домашний интернет</option>
               <option value="Macbook Pro">Macbook Pro</option>
+              <option value="Роутер">Роутер</option>
               <option value="iMac">iMac</option>
               <option value="iPad">iPad</option>
+              <option value="Другое">Другое</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description of the issue</label>
+            <label htmlFor="description">Описание проблемы</label>
             <textarea
               name="description"
               id="description"
               className="form-control"
-              placeholder="Description"
+              placeholder="Описание"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className="form-group">
-            <button className="btn btn-block">Submit</button>
+            <button className="btn btn-block">Отправить</button>
           </div>
         </form>
       </section>

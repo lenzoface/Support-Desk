@@ -17,13 +17,13 @@ function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/">Support Desk</Link>
+        <Link to="/">Заявки Казахтелеком</Link>
       </div>
       <ul>
         {user ? (
           <li>
             <button className="btn" onClick={onLogout}>
-              <FaSignOutAlt /> Logout
+              <FaSignOutAlt /> Выйти
             </button>
           </li>
         ) : (
@@ -31,13 +31,13 @@ function Header() {
             <li>
               <Link to="/login">
                 <FaSignInAlt />
-                Login
+                Логин
               </Link>
             </li>
             <li>
               <Link to="/register">
                 <FaUser />
-                Register
+                Зарегистрироваться
               </Link>
             </li>
           </>

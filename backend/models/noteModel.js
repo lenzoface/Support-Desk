@@ -14,7 +14,7 @@ const noteSchema = mongoose.Schema(
     },
     text: {
       type: String,
-      required: [true, "Please add some text"],
+      required: [true, "Пожалуйста добавьте текст"],
     },
     // to be done in future, make a portal for staff to manage tickets
     isStaff: {

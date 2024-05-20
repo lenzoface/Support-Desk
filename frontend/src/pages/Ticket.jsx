@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
 import { getTicket, closeTicket } from "../features/tickets/ticketSlice";
+// eslint-disable-next-line
 import { getNotes, createNote, reset as notesReset } from "../features/notes/noteSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
@@ -28,6 +29,7 @@ Modal.setAppElement("#root");
 function Ticket() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [noteText, setNoteText] = useState("");
+  // eslint-disable-next-line
   const { ticket, isLoading, isSuccess, isError, message } = useSelector(
     (state) => state.tickets
   );
@@ -35,7 +37,7 @@ function Ticket() {
   const { notes, isLoading: notesIsLoading } = useSelector(
     (state) => state.notes
   );
-
+// eslint-disable-next-line
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -75,7 +77,7 @@ function Ticket() {
   }
 
   if (isError) {
-    return <h3>Something Went Wrong</h3>;
+    return <h3>Что-то пошло не так!</h3>;
   }
 
   return (
@@ -83,28 +85,28 @@ function Ticket() {
       <header className="ticket-header">
         <BackButton url="/tickets" />
         <h2>
-          Ticket Id: {ticket._id}
+          Id заявки: {ticket._id}
           <span className={`status status-${ticket.status}`}>
             {ticket.status}
           </span>
         </h2>
         <h3>
-          Date Submitted: {new Date(ticket.createdAt).toLocaleString("ru-RU")}
+          Дата заявки: {new Date(ticket.createdAt).toLocaleString("ru-RU")}
         </h3>
         <h3>
-          Device: <i>{ticket.product}</i>
+          Устройство: <i>{ticket.product}</i>
         </h3>
         <hr />
         <div className="ticket-desc">
-          <h3>Issue Description</h3>
+          <h3>Описание поломки</h3>
           <p>{ticket.description}</p>
         </div>
-        <h2>Notes</h2>
+        <h2>Заметки</h2>
       </header>
 
       {ticket.status !== "closed" && (
         <button onClick={openModal} className="btn">
-          <FaPlus /> Add Note
+          <FaPlus /> Добавить заметку
         </button>
       )}
 
@@ -112,9 +114,9 @@ function Ticket() {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Add Note"
+        contentLabel="Добавить заметку"
       >
-        <h2>Add Note</h2>
+        <h2>Добавить заметку</h2>
         <button className="btn-close" onClick={closeModal}>
           X
         </button>
@@ -124,13 +126,13 @@ function Ticket() {
               name="noteText"
               id="noteText"
               className="form-control"
-              placeholder="Note text"
+              placeholder="Текст заметки"
               value={noteText}
               onChange={(e) => setNoteText(e.target.value)}
             ></textarea>
           </div>
           <div className="form-group">
-            <button className="btn" type="submit">Submit</button>
+            <button className="btn" type="submit">Отправить</button>
           </div>
         </form>
       </Modal>
@@ -143,7 +145,7 @@ function Ticket() {
 
       {ticket.status !== "closed" && (
         <button onClick={onTicketClose} className="btn btn-block btn-danger">
-          Close Ticket
+          Закрыть заявку
         </button>
       )}
     </div>

@@ -3,16 +3,16 @@ const mongoose = require('mongoose')
 const userSchema = mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'Please add a name']
+        required: [true, 'Пожалуйста введите имя']
     },
     email: {
         type: String,
-        required: [true, 'Please add an email'],
+        required: [true, 'Пожалуйста введите email'],
         unique: true,
     },
     password: {
         type: String,
-        required: [true, 'Please add a password']
+        required: [true, 'Пожалуйста добавьте пароль']
     },
     isAdmin: {
         type: Boolean,

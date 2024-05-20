@@ -13,14 +13,14 @@ const getNotes = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401);
-    throw new Error("User not found");
+    throw new Error("Пользователь не найден");
   }
 
   const ticket = await Ticket.findById(req.params.ticketId);
 
   if (ticket.user.toString() !== req.user.id) {
     res.status(401);
-    throw new Error("User not authorized");
+    throw new Error("У вас нет доступа");
   }
 
   const notes = await Note.find({ ticket: req.params.ticketId });
@@ -37,14 +37,14 @@ const addNote = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401);
-    throw new Error("User not found");
+    throw new Error("Пользователь не найден");
   }
 
   const ticket = await Ticket.findById(req.params.ticketId);
 
   if (ticket.user.toString() !== req.user.id) {
     res.status(401);
-    throw new Error("User not authorized");
+    throw new Error("У вас нет доступа");
   }
 
   const note = await Note.create({

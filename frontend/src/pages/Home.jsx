@@ -5,16 +5,16 @@ function Home() {
   return (
     <>
       <section className="heading">
-        <h1>What do you need help with?</h1>\
-        <p>Please choose from an option below</p>
+        <h1>Как мы можем вам помочь?</h1>\
+        <p>Пожалуйста выберите одну из опции ниже</p>
       </section>
 
       <Link to="/new-ticket" className="btn btn-reverse btn-block">
-        <FaQuestionCircle /> Create New Ticket
+        <FaQuestionCircle /> Создать новую заявку
       </Link>
 
       <Link to="/tickets" className="btn btn-block">
-        <FaTicketAlt /> View My Tickets
+        <FaTicketAlt /> Смотреть мои заявки
       </Link>
     </>
   );
