@@ -94,7 +94,7 @@ function Ticket() {
           Дата заявки: {new Date(ticket.createdAt).toLocaleString("ru-RU")}
         </h3>
         <h3>
-          Устройство: <i>{ticket.product}</i>
+          Продукт: <i>{ticket.product}</i>
         </h3>
         <hr />
         <div className="ticket-desc">
