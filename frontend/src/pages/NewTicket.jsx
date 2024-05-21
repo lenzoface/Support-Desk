@@ -66,9 +66,14 @@ function NewTicket() {
               value={product}
               onChange={(e) => setProduct(e.target.value)}
             >
+              Домашний телефон', 'ID TV', 'SIP телфония', 'Altel/Tele2'
+              <option value="Домашний телефон">Домашний телефон</option>
+              <option value="ID TV">ID TV</option>
+              <option value="SIP телфония">SIP телфония</option>
+              <option value="Altel/Tele2">Altel/Tele2</option>
+              <option value="Домашний интернет">Домашний интернет</option>
               <option value="iPhone">iPhone</option>
               <option value="Телефон на Android">Телефон на Android</option>
-              <option value="Домашний интернет">Домашний интернет</option>
               <option value="Macbook Pro">Macbook Pro</option>
               <option value="Роутер">Роутер</option>
               <option value="iMac">iMac</option>
