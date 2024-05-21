@@ -12,7 +12,7 @@ function NewTicket() {
 
   const [name] = useState(user.name);
   const [email] = useState(user.email);
-  const [product, setProduct] = useState("iPhone");
+  const [product, setProduct] = useState("Домашний телефон");
   const [description, setDescription] = useState("");
 
   const dispatch = useDispatch()
@@ -66,7 +66,6 @@ function NewTicket() {
               value={product}
               onChange={(e) => setProduct(e.target.value)}
             >
-              Домашний телефон', 'ID TV', 'SIP телфония', 'Altel/Tele2'
               <option value="Домашний телефон">Домашний телефон</option>
               <option value="ID TV">ID TV</option>
               <option value="SIP телфония">SIP телфония</option>
